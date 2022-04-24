@@ -1,0 +1,119 @@
+//First draft of country stats db
+//https://www.dbdiagram.io
+
+Table countries as C {
+  id int [pk, increment]
+  country_name varchar
+  continent int
+  population int
+  size int
+  pop_replace_rate decimal
+  terrain int
+  avg_elevation int
+  pct_floodland int
+  landlocked boolean
+  gdp_millions int
+  import_millions int
+  export_millions int
+  standing_army_thousands int
+  naval_displacement_tons int
+  num_warplanes int
+  avg_warplane_year int
+  main_trade_partner int
+  sea_access int
+  num_wdw_ports int
+  maj_religion int
+  min_religion int
+  maj_ethnic int
+  min_ethnic int
+  maj_lang int
+  min_lang int
+  government int
+  main_trade_bloc int
+  main_mil_alliance int
+}
+
+Ref: C.main_trade_partner > C.id
+
+Ref: C.continent > continents.id
+Table continents {
+  id int [pk, increment]
+  continent_name varchar 
+}
+
+Ref: C.terrain > terrain_type.id
+Table terrain_type {
+  id int [pk, increment]
+  terrain varchar //include 2-hybrid combo types
+}
+
+Ref: C.sea_access > sea_access_type.id
+Table sea_access_type {
+  id int [pk, increment]
+  access_type varchar
+}
+
+Ref: C.maj_religion > religions.id
+Ref: C.min_religion > religions.id
+Table religions {
+  id int [pk, increment]
+  religion varchar
+}
+
+Ref: C.maj_ethnic > ethnicities.id
+Ref: C.min_ethnic > ethnicities.id
+Table ethnicities {
+  id int [pk, increment]
+  eth varchar
+}
+
+Ref: C.maj_lang > languages.id
+Ref: C.min_lang > languages.id
+Table languages {
+  id int [pk, increment]
+  lang varchar
+}
+
+Ref: C.government > governments.id
+Table governments {
+  id int [pk, increment]
+  govt varchar
+}
+
+Ref: C.main_trade_bloc > trade_blocs.id
+Table trade_blocs {
+  id int [pk, increment]
+  trade_bloc_name varchar
+}
+
+Ref: C.main_mil_alliance > mil_alliances.id
+Table mil_alliances {
+  id int [pk, increment]
+  mil_alliance_name varchar
+}
+
+//////////
+
+Table neighbors {
+  id int [pk, increment]
+  country_a int
+  country_b int
+}
+
+Table allies {
+  id int [pk, increment]
+  country_a int
+  country_b int
+}
+
+Table rivals {
+  id int [pk, increment]
+  country_a int
+  country_b int
+}
+
+
+
+
+
+
